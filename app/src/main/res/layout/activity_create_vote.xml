@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292F45"
+    tools:context=".CreateVote">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="create voting"
+                    android:textSize="20dp"
+                    android:textColor="#fff"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:lottie_rawRes="@raw/customize"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+        <EditText
+            android:id="@+id/vname"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_baseline_how_to_vote_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="Voting name"
+            android:textColorHint="#b8b8b8"/>
+
+        <EditText
+            android:inputType="textPassword"
+            android:id="@+id/vpassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="set password"
+            android:textColorHint="#b8b8b8"/>
+
+        <EditText
+            android:id="@+id/c1name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_baseline_account_box_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="candidate 1 name"
+            android:textColorHint="#b8b8b8"/>
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/c1aadhaar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/ic_baseline_credit_card_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="candidate 1 aadhaar card"
+            android:textColorHint="#b8b8b8"/>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_marginLeft="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/pos"
+                android:text="+"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/neg"
+                android:text="-"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_gravity="center"
+            android:id="@+id/i_count"/>
+
+        <EditText
+            android:id="@+id/c2name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"
+            android:drawableLeft="@drawable/ic_baseline_account_box_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="candidate 2 name"
+            android:textColorHint="#b8b8b8"/>
+
+        <EditText
+            android:visibility="gone"
+            android:inputType="number"
+            android:id="@+id/c2aadhaar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/ic_baseline_credit_card_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="candidate 2 aadhaar card"
+            android:textColorHint="#b8b8b8"/>
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/c3name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_baseline_account_box_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="candidate 3 name"
+            android:textColorHint="#b8b8b8"/>
+
+        <EditText
+            android:visibility="gone"
+            android:inputType="number"
+            android:id="@+id/c3aadhaar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColor="#e9e9e9"
+            android:drawablePadding="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/ic_baseline_credit_card_24"
+            android:drawableTint="#b8b8b8"
+            android:hint="candidate 3 aadhaar card"
+            android:textColorHint="#b8b8b8"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"/>
+
+        <Button
+            android:id="@+id/btn_create"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="done"/>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+</ScrollView>
