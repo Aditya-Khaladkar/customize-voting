@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,12 +47,14 @@ public class CreateVote extends AppCompatActivity {
             ".{4,}" +               //at least 4 characters
             "$");
 
-    EditText vname,vpassword,c1name,c1aadhaar,c2name,c2aadhaar,c3name,c3aadhaar;
-    ProgressBar progressBar;
-    Button btn_create,pos,neg;
+    EditText vname,vpassword,c1name,c2name,c3name,c4name,c5name,c6name;
+    Button btn_create;
     FirebaseFirestore firebaseFirestore;
+    FloatingActionButton pos;
     int count;
-    TextView i_count;
+    TextView i_count, name1, passowrd1;
+    String votingname, password;
+    LinearLayout l1,l2,l3,l4,l5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,20 +62,36 @@ public class CreateVote extends AppCompatActivity {
 
         firebaseFirestore=FirebaseFirestore.getInstance();
 
+
+        votingname = getIntent().getStringExtra("votingname");
+        password = getIntent().getStringExtra("password");
+
+        name1 = findViewById(R.id.name1);
+        passowrd1 = findViewById(R.id.password1);
+
+        name1.setText(votingname);
+        passowrd1.setText(password);
+
+        // initializing layout
+
+        l1 = findViewById(R.id.l1);
+        l2 = findViewById(R.id.l2);
+        l3 = findViewById(R.id.l3);
+        l4 = findViewById(R.id.l4);
+        l5 = findViewById(R.id.l5);
+
         vname=findViewById(R.id.vname);
         vpassword=findViewById(R.id.vpassword);
         c1name=findViewById(R.id.c1name);
-        c1aadhaar=findViewById(R.id.c1aadhaar);
         c2name=findViewById(R.id.c2name);
-        c2aadhaar=findViewById(R.id.c2aadhaar);
         c3name=findViewById(R.id.c3name);
-        c3aadhaar=findViewById(R.id.c3aadhaar);
+        c4name = findViewById(R.id.c4name);
+        c5name = findViewById(R.id.c5name);
+        c6name = findViewById(R.id.c6name);
+
         btn_create=findViewById(R.id.btn_create);
         pos = findViewById(R.id.pos);
-        neg = findViewById(R.id.neg);
         i_count = findViewById(R.id.i_count);
-
-        progressBar=findViewById(R.id.progressbar);
 
         pos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,12 +100,16 @@ public class CreateVote extends AppCompatActivity {
                 count++;
                 i_count.setText(String.valueOf(count));
 
-                if (count==2){
-                    c2name.setVisibility(View.VISIBLE);
-                    c2aadhaar.setVisibility(View.VISIBLE);
-                } else if (count==3){
-                    c3name.setVisibility(View.VISIBLE);
-                    c3aadhaar.setVisibility(View.VISIBLE);
+                if (count==1){
+                    l1.setVisibility(View.VISIBLE);
+                } else if (count==2){
+                    l2.setVisibility(View.VISIBLE);
+                } else if (count == 3) {
+                    l3.setVisibility(View.VISIBLE);
+                } else if (count == 4) {
+                    l4.setVisibility(View.VISIBLE);
+                } else if (count == 5) {
+                    l5.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -93,114 +117,80 @@ public class CreateVote extends AppCompatActivity {
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String votingname=vname.getText().toString();
-                String password=vpassword.getText().toString();
-                String candidate1name=c1name.getText().toString();
-                String candidate1aadhaar=c1aadhaar.getText().toString();
-                String candidate2name=c2name.getText().toString();
-                String candidate2aadhaar=c2aadhaar.getText().toString();
-                String candidate3name=c3name.getText().toString();
-                String candidate3aadhaar=c3aadhaar.getText().toString();
+                String candidate1name = c1name.getText().toString();
+                String candidate2name = c2name.getText().toString();
+                String candidate3name = c3name.getText().toString();
+                String candidate4name = c4name.getText().toString();
+                String candidate5name = c5name.getText().toString();
+                String candidate6name = c6name.getText().toString();
+
+                String c2 = "";
+                String c3 = "";
+                String c4 = "";
+                String c5 = "";
+                String c6 = "";
+
+                c2 += candidate2name;
+                c3 += candidate3name;
+                c4 += candidate4name;
+                c5 += candidate5name;
+                c6 += candidate6name;
 
                 Random random=new Random();
                 int n=1000000+random.nextInt(9999999);
                 String code=String.valueOf(n);
 
-                boolean result1 = Verhoeff.validateVerhoeff(candidate1aadhaar);
-                String msg1 = String.valueOf(result1);
-
-                boolean result2 = Verhoeff.validateVerhoeff(candidate2aadhaar);
-                String msg2 = String.valueOf(result2);
-
-                boolean result3 = Verhoeff.validateVerhoeff(candidate3aadhaar);
-                String msg3 = String.valueOf(result3);
-
-                if (votingname.isEmpty()) {
-                    vname.setError("this field can't be empty");
-                } else if (!NAME.matcher(votingname).matches()) {
-                    vname.setError("No White Spaces Are Allowed");
-                } else if (password.length() < 5) {
-                    vpassword.setError("password is too weak");
-                } else if (candidate1name.isEmpty()) {
+                if (candidate1name.isEmpty()) {
                     c1name.setError("this field can't be empty");
                 } else {
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put(candidate1name, 0);
-                    hashMap.put(candidate2name, 0);
-                    hashMap.put(candidate3name, 0);
+                    hashMap.put(c2, 0);
+                    hashMap.put(c3, 0);
+                    hashMap.put(c4, 0);
+                    hashMap.put(c5, 0);
+                    hashMap.put(c6, 0);
                     hashMap.put("votingname", votingname);
                     hashMap.put("votercode", code);
                     hashMap.put("password", password);
                     hashMap.put("candidate1name", candidate1name);
-                    hashMap.put("candidate2name", candidate2name);
-                    hashMap.put("candidate3name", candidate3name);
-
-                    HashMap<String, Object> hashMap1 = new HashMap<>();
-                    hashMap1.put("votingname", votingname);
+                    hashMap.put("candidate2name", c2);
+                    hashMap.put("candidate3name", c3);
+                    hashMap.put("candidate4name", c4);
+                    hashMap.put("candidate5name", c5);
+                    hashMap.put("candidate6name", c5);
 
                     HashMap<String, Object> hashMap2 = new HashMap<>();
                     hashMap2.put("votercode", code);
 
-                    Query query = FirebaseDatabase.getInstance().getReference().child("Voting Details")
-                            .orderByChild("votingname").equalTo(votingname);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    firebaseFirestore.collection("votes")
+                            .document(votingname).set(hashMap)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Intent intent = new Intent(getApplicationContext(),VoteSuccess.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.getChildrenCount() > 0) {
-                                Toast.makeText(CreateVote.this, "this voting name already exist", Toast.LENGTH_SHORT).show();
-                            } else {
-                                progressBar.setVisibility(View.VISIBLE);
-
-                                FirebaseDatabase.getInstance().getReference("Voting Details")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(hashMap1)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Log.d(TAG, "onComplete: details stored successfully");
-                                                } else {
-                                                    Log.d(TAG, "onComplete: error in storing password");
-                                                }
-                                            }
-                                        });
-
-                                firebaseFirestore.collection("votes")
-                                        .document(votingname)
-                                        .set(hashMap)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                startActivity(new Intent(getApplicationContext(), VoteSuccess.class));
-                                                finish();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(CreateVote.this, "Error", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                                firebaseFirestore.collection("voting code")
-                                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .set(hashMap2)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(CreateVote.this, "Code Generated", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(CreateVote.this, "error in generating code", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
+                        public void onFailure(Exception e) {
+                            Log.d(TAG, "onFailure: there was some error"+e);
                         }
+                    });
 
+                    firebaseFirestore.collection("voting code")
+                            .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .set(hashMap2)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
+                        public void onFailure(Exception e) {
+                            Log.d(TAG, "onFailure: "+e);
                         }
                     });
                 }

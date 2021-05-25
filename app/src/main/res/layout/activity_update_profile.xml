@@ -18,7 +18,7 @@
             android:layout_height="200dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/profile"/>
+            app:lottie_rawRes="@raw/profileanimation"/>
 
         <EditText
             android:id="@+id/updatename"

@@ -48,19 +48,19 @@ public class Candidate extends AppCompatActivity {
         firebaseFirestore=FirebaseFirestore.getInstance();
 
         // on click
-        txtresult=findViewById(R.id.txtresult);
-        txtresult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),Result.class);
-                intent.putExtra("votingname",votingname);
-                intent.putExtra("name1",name1);
-                intent.putExtra("name2",name2);
-                intent.putExtra("name3",name3);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
+//        txtresult=findViewById(R.id.txtresult);
+//        txtresult.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(getApplicationContext(),Result.class);
+//                intent.putExtra("votingname",votingname);
+//                intent.putExtra("name1",name1);
+//                intent.putExtra("name2",name2);
+//                intent.putExtra("name3",name3);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//            }
+//        });
         
         // store vote into database
         

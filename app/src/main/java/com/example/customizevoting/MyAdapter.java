@@ -26,6 +26,9 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Model,MyAdapter.MyViewHo
         holder.listname1.setText(model.candidate1name);
         holder.listname2.setText(model.candidate2name);
         holder.listname3.setText(model.candidate3name);
+        holder.listname4.setText(model.candidate4name);
+        holder.listname5.setText(model.candidate5name);
+        holder.listname6.setText(model.candidate6name);
         holder.pass.setText(model.password);
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +39,9 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Model,MyAdapter.MyViewHo
                 intent.putExtra("name1",model.getCandidate1name());
                 intent.putExtra("name2",model.getCandidate2name());
                 intent.putExtra("name3",model.getCandidate3name());
+                intent.putExtra("name4",model.getCandidate4name());
+                intent.putExtra("name5",model.getCandidate5name());
+                intent.putExtra("name6",model.getCandidate6name());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.relativeLayout.getContext().startActivity(intent);
             }
@@ -50,7 +56,8 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Model,MyAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView listvname,listid,listname1,listname2,listname3,pass;
+        TextView listvname,listid,listname1,listname2,listname3,
+                listname4,listname5,listname6,pass;
         RelativeLayout relativeLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +69,9 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Model,MyAdapter.MyViewHo
             listname1=itemView.findViewById(R.id.listname1);
             listname2=itemView.findViewById(R.id.listname2);
             listname3=itemView.findViewById(R.id.listname3);
+            listname4=itemView.findViewById(R.id.listname4);
+            listname5=itemView.findViewById(R.id.listname5);
+            listname6=itemView.findViewById(R.id.listname6);
 
         }
     }

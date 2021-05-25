@@ -3,6 +3,7 @@ package com.example.customizevoting;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,29 +27,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Dashboard extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-    LinearLayout layout_survey,layout_profile,layout_help;
+    LinearLayout layout_survey,layout_help,layout_create;
+    LottieAnimationView layout_search;
     TextView name;
-    ImageView profileImage,layout_search;
+    ImageView profileImage;
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions gso;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CreateVote.class);
-                startActivity(intent);
-            }
-        });
         // dashboard
         dashboard();
 
         name = findViewById(R.id.name);
         profileImage = findViewById(R.id.profileImage);
+
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Profile.class));
+            }
+        });
 
         gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -64,8 +64,12 @@ public class Dashboard extends AppCompatActivity implements GoogleApiClient.OnCo
     private void dashboard() {
         layout_survey=findViewById(R.id.layout_survey);
         layout_help=findViewById(R.id.layout_help);
-        layout_profile=findViewById(R.id.layout_profile);
         layout_search = findViewById(R.id.layout_search);
+        layout_create = findViewById(R.id.layout_create);
+
+        layout_create.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(),SetNamePassword.class));
+        });
 
         layout_search.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -78,13 +82,6 @@ public class Dashboard extends AppCompatActivity implements GoogleApiClient.OnCo
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),HelpCenter.class));
-            }
-        });
-
-        layout_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Profile.class));
             }
         });
         layout_survey.setOnClickListener(new View.OnClickListener() {
