@@ -124,11 +124,11 @@ public class CreateVote extends AppCompatActivity {
                 String candidate5name = c5name.getText().toString();
                 String candidate6name = c6name.getText().toString();
 
-                String c2 = "";
-                String c3 = "";
-                String c4 = "";
-                String c5 = "";
-                String c6 = "";
+                String c2 = " ";
+                String c3 = " ";
+                String c4 = " ";
+                String c5 = " ";
+                String c6 = " ";
 
                 c2 += candidate2name;
                 c3 += candidate3name;
