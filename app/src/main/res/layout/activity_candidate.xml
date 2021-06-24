@@ -196,6 +196,21 @@
 
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/txtresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="click here to see result"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
     </LinearLayout>
 
 </ScrollView>
