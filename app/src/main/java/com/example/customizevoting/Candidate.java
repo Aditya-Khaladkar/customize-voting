@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -100,6 +102,17 @@ public class Candidate extends AppCompatActivity {
                         return newVote;
                     }
                 });
+
+                Toast.makeText(Candidate.this, "vote registered successfully "+
+                        "you cannot vote twice",
+                        Toast.LENGTH_SHORT).show();
+
+                c1vote.setEnabled(false);
+                c2vote.setEnabled(false);
+                c3vote.setEnabled(false);
+                c4vote.setEnabled(false);
+                c5vote.setEnabled(false);
+                c6vote.setEnabled(false);
             }
         });
 
@@ -118,6 +131,18 @@ public class Candidate extends AppCompatActivity {
                         return newVote;
                     }
                 });
+
+                Toast.makeText(Candidate.this, "vote registered successfully "+
+                                "you cannot vote twice",
+                        Toast.LENGTH_SHORT).show();
+
+                c1vote.setEnabled(false);
+                c2vote.setEnabled(false);
+                c3vote.setEnabled(false);
+                c4vote.setEnabled(false);
+                c5vote.setEnabled(false);
+                c6vote.setEnabled(false);
+
             }
         });
 
@@ -136,6 +161,17 @@ public class Candidate extends AppCompatActivity {
                         return newVote;
                     }
                 });
+
+                Toast.makeText(Candidate.this, "vote registered successfully "+
+                                "you cannot vote twice",
+                        Toast.LENGTH_SHORT).show();
+
+                c1vote.setEnabled(false);
+                c2vote.setEnabled(false);
+                c3vote.setEnabled(false);
+                c4vote.setEnabled(false);
+                c5vote.setEnabled(false);
+                c6vote.setEnabled(false);
             }
         });
 
@@ -154,6 +190,17 @@ public class Candidate extends AppCompatActivity {
                         return newVote;
                     }
                 });
+
+                Toast.makeText(Candidate.this, "vote registered successfully "+
+                                "you cannot vote twice",
+                        Toast.LENGTH_SHORT).show();
+
+                c1vote.setEnabled(false);
+                c2vote.setEnabled(false);
+                c3vote.setEnabled(false);
+                c4vote.setEnabled(false);
+                c5vote.setEnabled(false);
+                c6vote.setEnabled(false);
             }
         });
 
@@ -172,6 +219,17 @@ public class Candidate extends AppCompatActivity {
                         return newVote;
                     }
                 });
+
+                Toast.makeText(Candidate.this, "vote registered successfully "+
+                                "you cannot vote twice",
+                        Toast.LENGTH_SHORT).show();
+
+                c1vote.setEnabled(false);
+                c2vote.setEnabled(false);
+                c3vote.setEnabled(false);
+                c4vote.setEnabled(false);
+                c5vote.setEnabled(false);
+                c6vote.setEnabled(false);
             }
         });
 
@@ -190,6 +248,17 @@ public class Candidate extends AppCompatActivity {
                         return newVote;
                     }
                 });
+
+                Toast.makeText(Candidate.this, "vote registered successfully "+
+                                "you cannot vote twice",
+                        Toast.LENGTH_SHORT).show();
+
+                c1vote.setEnabled(false);
+                c2vote.setEnabled(false);
+                c3vote.setEnabled(false);
+                c4vote.setEnabled(false);
+                c5vote.setEnabled(false);
+                c6vote.setEnabled(false);
             }
         });
 

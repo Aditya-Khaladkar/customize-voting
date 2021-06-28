@@ -51,7 +51,7 @@ public class SetNamePassword extends AppCompatActivity {
                         Toast.makeText(SetNamePassword.this, "this voting name exist", Toast.LENGTH_SHORT).show();
                     } else {
                         FirebaseDatabase.getInstance().getReference("Voting Details")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .push()
                                 .setValue(hashMap)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
